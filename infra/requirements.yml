@@ -1,0 +1,5 @@
+# from github
+- src: https://github.com/devopscoder331/ansible-role-nfs.git
+
+# kubernetes from github
+- src: https://github.com/kubernetes-sigs/kubespray.git

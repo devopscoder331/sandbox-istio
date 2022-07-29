@@ -1,0 +1,26 @@
+all:
+  hosts:
+  %{ for index, name in vps ~}
+    ${name}:
+        ansible_host: ${vps_nat_ip[index]}
+        ip: ${vps_ip[index]}
+        access_ip: ${vps_nat_ip[index]}
+  %{ endfor ~}
+
+  children:
+    kube_control_plane:
+      hosts:
+        trf-1:
+    kube_node:
+      hosts:
+        trf-1:
+        trf-2:
+    etcd:
+      hosts:
+        trf-1:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}

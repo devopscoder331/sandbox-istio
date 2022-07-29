@@ -1,0 +1,21 @@
+[all]
+%{ for index, name in vps ~}
+${vps_name[index]} ansible_user=${ansible_user} ansible_host=${vps_nat_ip[index]} ansible_ssh=${ansible_ssh[index]}
+%{ endfor ~}
+
+[kube_control_plane]
+node1
+
+[etcd]
+node1
+
+[kube_node]
+node1
+node2
+
+[calico_rr]
+
+[k8s_cluster:children]
+kube_control_plane
+kube_node
+calico_rr

@@ -1,0 +1,14 @@
+- name: deploy nfs servers
+  hosts: nfs
+  become: true
+  gather_facts: true
+  roles:
+    - devopscoder331.nfs
+      nfs_exports:
+      - path: "/var/nfs/folder1"
+        acls: 
+          - 51.250.84.0/24(rw,sync,no_subtree_check)
+
+
+#- name: Install kubernetes
+#  import_playbook: kubespray/cluster.yml

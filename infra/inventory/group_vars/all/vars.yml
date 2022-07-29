@@ -1,0 +1,3 @@
+vars:
+ansible_user: root
+private-key: ~/.ssh/id_rsa
